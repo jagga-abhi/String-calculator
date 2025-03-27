@@ -1,5 +1,5 @@
-# Sample workflow for building and deploying a Jekyll site to GitHub Pages
-name: Deploy Jekyll with GitHub Pages dependencies preinstalled
+# Sample workflow for building and deploying a Node.js application to GitHub Pages
+name: Deploy Node.js App with GitHub Pages
 
 on:
   # Runs on pushes targeting the default branch
@@ -28,15 +28,22 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-      - name: Build with Jekyll
-        uses: actions/jekyll-build-pages@v1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          source: ./
-          destination: ./_site
+          node-version: '16' # Specify the Node.js version you want to use
+
+      - name: Install Dependencies
+        run: yarn install
+
+      - name: Build the Application
+        run: yarn run build
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./build # Adjust this path if your build output is in a different directory
 
   # Deployment job
   deploy:
