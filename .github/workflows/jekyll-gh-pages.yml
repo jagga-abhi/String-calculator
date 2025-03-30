@@ -34,6 +34,9 @@ jobs:
         with:
           node-version: '16' # Specify the Node.js version you want to use
 
+      - name: Install Yarn
+        run: npm install --global yarn
+
       - name: Install Dependencies
         run: yarn install
 
