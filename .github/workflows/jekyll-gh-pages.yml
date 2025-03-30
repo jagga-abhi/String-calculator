@@ -41,6 +41,9 @@ jobs:
         run: yarn install --frozen-lockfile
         continue-on-error: true # Optional: allows the workflow to continue even if this step fails
 
+      - name: Run Test Cases
+        run: yarn run test
+        
       - name: Build the Application
         run: yarn run build
 
